@@ -2,12 +2,12 @@
 This repository will maintain simulation files and other relevant files on the Sample and Hold Circuitry worked on in the VSD Online Internship 2020
 ## BLOCK DIAGRAM OF SAMPLE AND HOLD CIRCUIT
 <p align="center">
-  <img width="800" height="500" src="/Images/block.png">
+  <img width="800" height="500" src="/pre-layout/block.png">
 </p>
 
 ## CIRCUIT DIAGRAM OF SAMLE AND HOLD
 <p align="center">
-  <img width="800" height="500" src="/Images/circuit.png">
+  <img width="800" height="500" src="/pre-layout/circuit.png">
 </p>
 
 
