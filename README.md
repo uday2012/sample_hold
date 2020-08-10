@@ -51,7 +51,7 @@ To clone the Repository and download the Netlist files for Simulation, enter the
 ```
 $  sudo apt install -y git
 $  git clone https://github.com/uday2012/sample_hold
-$  cd sample_hold/Ngspice_Simulation
+$  cd sample_hold/pre-layout
 ```
 Run the netlist file using the following command.
 ```
