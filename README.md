@@ -60,10 +60,10 @@ $  ngspice sample_hold.cir
 
 
 <p align="center">
- <img width="800" height="500" src="/Images/clock.png">
+ <img width="800" height="500" src="/pre-layout/clock.png">
 </p>
 <p align="center">
-<img width="800" height="500" src="/Images/sample.png">
+<img width="800" height="500" src="/pre-layout/sample.png">
 </p>
 
 ## Acknowledgments
