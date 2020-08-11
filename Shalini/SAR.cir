@@ -1,0 +1,84 @@
+* C:\Users\Hp\Documents\LTspiceXVII\SARlogic_10BIT.asc
+*10-BITS SAR logic
+
+X1 VDD 0 CLK COMP RESET D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 EOC SAR
+.subckt SAR VDD 0 CLK RESET COMP D9 D8 D7 D6 D5 D4 D3 D2 D1 D0 EOC
+XU1 0 VDD 0 RESET NC_01 N001 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU2 0 VDD N001 NC_02 RESET N002 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU3 0 VDD N002 NC_03 RESET N003 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU4 0 VDD N003 NC_04 RESET N004 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU5 0 VDD N004 NC_05 RESET N005 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU6 0 VDD N005 NC_06 RESET N006 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU7 0 VDD N006 NC_07 RESET N007 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU8 0 VDD N007 NC_08 RESET N008 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU9 0 VDD N008 NC_09 RESET N009 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU10 0 VDD N009 NC_10 RESET N010 CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU11 0 VDD N010 NC_11 RESET EOC CLK DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU12 0 VDD COMP N010 RESET D0 N011 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU13 0 VDD COMP N009 RESET D1 D0 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU14 0 VDD COMP N008 RESET D2 D1 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU15 0 VDD COMP N007 RESET D3 D2 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU16 0 VDD COMP N006 RESET D4 D3 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU17 0 VDD COMP N005 RESET D5 D4 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU18 0 VDD COMP N004 RESET D6 D5 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU19 0 VDD COMP N003 RESET D7 D6 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU20 0 VDD COMP N002 RESET D8 D7 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU21 0 VDD COMP N001 RESET D9 D8 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+XU23 0 VDD 0 EOC RESET N011 0 DFFSR vhigh=1.8 vlow=0 Trise=1ns Tfall=1ns
+.ends SAR
+
+V1 COMP 0 PULSE(0 3 1ns 1ns 1ns 1us 2us)
+V2 RESET 0 PULSE(0 1.8 1ns 1ns 1ns .05us 6us)
+V3 CLK 0 PULSE(0 1.8 1ns 1ns 1ns .25us .5us)
+V5 VDD 0 1.8
+
+.tran 6us
+.include osu018.lib
+.control
+run
+plot V(CLK)  V(RESET) V(COMP) V(D9) V(D8) V(D7) V(D6) V(D5) V(D4) V(D3) V(D2) V(D1) V(D0) V(EOC)
+.endc
+
+
+*D flip flop
+.subckt DFFSR gnd vdd D S_ R_ Q CLK
+Msp S S_ vdd vdd pfet w=2u l=0.2u
+Msn S S_ gnd gnd nfet w=1u l=0.2u
+Mrp R R_ vdd vdd pfet w=2u l=0.2u
+Mrn R R_ gnd gnd nfet w=1u l=0.2u
+M0 a_2_6# R vdd vdd pfet w=2u l=0.2u
+M1 vdd a_10_61# a_2_6# vdd pfet w=2u l=0.2u
+M2 a_10_61# a_23_27# vdd vdd pfet w=2u l=0.2u
+M3 vdd S a_10_61# vdd pfet w=2u l=0.2u
+M4 a_23_27# a_47_71# a_2_6# vdd pfet w=1u l=0.2u
+M5 a_57_6# a_47_4# a_23_27# vdd pfet w=1u l=0.2u
+M6 vdd D a_57_6# vdd pfet w=2u l=0.2u
+M7 vdd a_47_71# a_47_4# vdd pfet w=2u l=0.2u
+M8 a_47_71# CLK vdd vdd pfet w=2u l=0.2u
+M9 a_105_6# a_47_71# a_10_61# vdd pfet w=1u l=0.2u
+M10 a_113_6# a_47_4# a_105_6# vdd pfet w=1u l=0.2u
+M11 a_122_6# a_105_6# vdd vdd pfet w=2u l=0.2u
+M12 vdd R a_122_6# vdd pfet w=2u l=0.2u
+M13 a_113_6# a_122_6# vdd vdd pfet w=2u l=0.2u
+M14 vdd S a_113_6# vdd pfet w=2u l=0.2u
+M15 vdd a_122_6# Q vdd pfet w=2u l=0.2u
+M16 a_10_6# R a_2_6# gnd nfet w=2u l=0.2u
+M17 gnd a_10_61# a_10_6# gnd nfet w=2u l=0.2u
+M18 a_26_6# a_23_27# gnd gnd nfet w=2u l=0.2u
+M19 a_10_61# S a_26_6# gnd nfet w=2u l=0.2u
+M20 a_23_27# a_47_4# a_2_6# gnd nfet w=1u l=0.2u
+M21 a_57_6# a_47_71# a_23_27# gnd nfet w=1u l=0.2u
+M22 gnd D a_57_6# gnd nfet w=1u l=0.2u
+M23 gnd a_47_71# a_47_4# gnd nfet w=1u l=0.2u
+M24 a_47_71# CLK gnd gnd nfet w=1u l=0.2u
+M25 a_105_6# a_47_4# a_10_61# gnd nfet w=1u l=0.2u
+M26 a_113_6# a_47_71# a_105_6# gnd nfet w=1u l=0.2u
+M27 a_130_6# a_105_6# a_122_6# gnd nfet w=2u l=0.2u
+M28 gnd R a_130_6# gnd nfet w=2u l=0.2u
+M29 a_146_6# a_122_6# gnd gnd nfet w=2u l=0.2u
+M30 a_113_6# S a_146_6# gnd nfet w=2u l=0.2u
+M31 gnd a_122_6# Q gnd nfet w=1u l=0.2u
+.ends DFFSR
+.tran 3us
+.include osu018.lib
+.end

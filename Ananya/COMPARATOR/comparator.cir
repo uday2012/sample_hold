@@ -1,0 +1,36 @@
+* Ananya Comparator
+
+x1 Vdd_a Vdd_d 0 v_p v_n Vout comparator
+.subckt comparator N001 N002 0 N006 N005 Vout
+M1 N001 N003 N003 N001 pfet l=180n w=240n m=1
+M2 N001 N003 N004 N001 pfet l=200n w=240n m=1
+M3 N003 N005 N008 0 nfet l=200n w=240n m=1
+M4 N004 N006 N008 0 nfet l=200n w=240n m=1
+
+M5 N001 N004 N009 N001 pfet l=200n w=240n m=1
+M6 N009 N007 0 0 nfet l=200n w=240n m=1
+M7 N008 N007 0 0 nfet l=200n w=240n m=1
+
+M8 N002 N009 N010 N002 pfet l=200n w=240n
+M9 N002 N010 Vout N002 pfet l=200n w=240n
+M10 N010 N009 0 0 nfet l=200n w=240n
+M11 Vout N010 0 0 nfet l=200n w=240n
+
+C1 Vout 0 1f
+M12 N001 N001 N007 0 nfet l=0.2u w=0.24u
+M13 N007 N001 0 0 nfet l=0.2u w=2.5u
+.ends comparator
+
+
+Vp v_p 0 23mV
+Vn v_n 0 20mV
+Vdd Vdd_a 0 3.3V
+V1 Vdd_d 0 1.8V
+
+.tran 1us 20us
+.inc osu018.lib
+.control
+run 
+plot V(v_p) V(v_n) V(Vout) 
+.endc 
+.end

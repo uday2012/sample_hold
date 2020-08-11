@@ -1,0 +1,54 @@
+
+*new
+
+
+Vdd 1 0 1.8V
+Vclk clk 0 pulse(0 1.8V 1p 1p 1p 0.25us 0.5us)
+Vs set 0 0V
+Vr reset 0 0V
+Vd data 0 pulse(0 1.8V 1p 1p 1p 1us 2us)
+
+X1 0 1 data set reset Q Q_bar clk DFFSR
+
+.subckt DFFSR 0 1 D S_ R_ Q Q_bar CLK
+Msp S S_ 1 1 pfet w=2u l=0.2u
+Msn S S_ 0 0 nfet w=1u l=0.2u
+Mrp R R_ 1 1 pfet w=2u l=0.2u
+Mrn R R_ 0 0 nfet w=1u l=0.2u
+M0 a R 1 1 pfet w=2u l=0.2u
+M1 1 b a 1 pfet w=2u l=0.2u
+M2 b c 1 1 pfet w=2u l=0.2u
+M3 1 S b 1 pfet w=2u l=0.2u
+M4 c dd a 1 pfet w=1u l=0.2u
+M5 e f c 1 pfet w=1u l=0.2u
+M6 1 D e 1 pfet w=2u l=0.2u
+M7 1 dd f 1 pfet w=2u l=0.2u
+M8 dd CLK 1 1 pfet w=2u l=0.2u
+M9 g dd b 1 pfet w=1u l=0.2u
+M10 h f g 1 pfet w=1u l=0.2u
+M11 Q_bar g 1 1 pfet w=2u l=0.2u
+M12 1 R Q_bar 1 pfet w=2u l=0.2u
+M13 h Q_bar 1 1 pfet w=2u l=0.2u
+M14 1 S h 1 pfet w=2u l=0.2u
+M15 1 Q_bar Q 1 pfet w=2u l=0.2u
+M16 j R a 0 nfet w=2u l=0.2u
+M17 0 b j 0 nfet w=2u l=0.2u
+M18 k c 0 0 nfet w=2u l=0.2u
+M19 b S k 0 nfet w=2u l=0.2u
+M20 c f a 0 nfet w=1u l=0.2u
+M21 e dd c 0 nfet w=1u l=0.2u
+M22 0 D e 0 nfet w=1u l=0.2u
+M23 0 dd f 0 nfet w=1u l=0.2u
+M24 dd CLK 0 0 nfet w=1u l=0.2u
+M25 g f b 0 nfet w=1u l=0.2u
+M26 h dd g 0 nfet w=1u l=0.2u
+M27 l g Q_bar 0 nfet w=2u l=0.2u
+M28 0 R l 0 nfet w=2u l=0.2u
+M29 m Q_bar 0 0 nfet w=2u l=0.2u
+M30 h S m 0 nfet w=2u l=0.2u
+M31 0 Q_bar Q 0 nfet w=1u l=0.2u
+.ends DFFSR
+
+.tran 3us
+
+.include osu018.lib
