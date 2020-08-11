@@ -1,9 +1,0 @@
-Circuit: * C:\Users\Hp\Documents\LTspiceXVII\SARlogic_10BIT.asc
-
-Warning: Multiple definitions of model "pfet" Type: BSIM3
-Warning: Multiple definitions of model "nfet" Type: BSIM3
-Ignoring BSIM parameter XL
-Ignoring BSIM parameter XW
-Ignoring BSIM parameter XL
-Ignoring BSIM parameter XW
-Fatal Error: Run: Missing node(s).
