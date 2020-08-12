@@ -7,7 +7,7 @@ This repository will maintain simulation files and other relevant files on the S
 
 ## CIRCUIT DIAGRAM OF SAMLE AND HOLD
 <p align="center">
-  <img width="800" height="500" src="/pre-layout/circuit.png">
+  <img width="1341" height="727" src="/pre-layout/circuit.png">
 </p>
 
 
